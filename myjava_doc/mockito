@@ -1,0 +1,58 @@
+-----------------------------------------------------------------
+参考链接：
+A) https://blog.csdn.net/bboyfeiyu/article/details/52127551
+
+-----------------------------------------------------------------
+1. 验证某些行为
+
+// 静态导入使代码更简洁
+import static org.mockito.Mockito.*;
+
+// 创建mock对象
+List mockedList = mock(List.class);
+
+// 使用mock对象
+mockedList.add("one");
+mockedList.clear();
+
+// 验证
+verify(mockedList).add("one");
+verify(mockedList).clear();
+
+-----------------------------------------------------------------
+2. 如何做一些测试桩(Stub)
+
+// 你可以mock具体的类型，不仅是接口
+LinkedList mockedList = mock(LinkedList.class);
+
+// stubbing，测试桩
+when(mockedList.get(0)).thenReturn("first");
+when(mockedList.get(1)).thenThrow(new RuntimeException());
+
+// 输出"first"
+System.out.println(mockedList.get(0));
+
+// 抛出异常
+System.out.println(mockedList.get(1));
+
+// 因为get(999)没有stub，因此输出null;
+System.out.println(mockedList.get(999));
+
+// 验证get(0)被调用的次数
+verify(mockedList).get(0);
+
+3. 参数匹配器
+4. 验证函数的确切、最少、从未调用次数
+5. 为返回值为void的函数通过Stub抛出异常
+6. 验证执行顺序
+7. 确保交互(interaction)操作不会执行在mock对象上
+8. 查找冗余的调用
+9. 简化mock对象的创建
+10. 为连续的调用做测试桩(stub)
+11. 为回调做测试桩(stub)
+12. doReturn()、doThrow()、doAnswer(), doNothing(), doCallRealMethod() 系列方法的运用；
+13. 监控真实对象
+14. 修改没有测试桩的调用的默认返回值(1.7版本之后);
+15. 为下一步的断言补货参数(1.8版本之后);
+
+

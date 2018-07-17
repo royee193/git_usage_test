@@ -1,0 +1,19 @@
+-----------------------------------------------------------
+
+1) mvn 的 clean 和 install 命令
+mvn clean compile package -Dmaven.test.skip=true -Dcheck.skip-checkstyle=true -Drelease
+mvn install -Dmaven.test.skip=true -Dcheck.skip-checkstyle=true -Drelease
+-----------------------------------------------------------
+2) Intellij里如何运行单元测试？
+其实是直接运行就可以了。我的每次报错“找不到ann”，是因为xihe重新编译的包，重新刷新下maven项目就可以了。
+-----------------------------------------------------------
+
+3) command line is too long，解决如下：
+需要在该项目文件夹下.idea/workspace.xml中添加
+<component name="PropertiesComponent">
+  ...
+  <property name="dynamic.classpath" value="true" />
+</component>
+参考链接：https://www.cnblogs.com/wjh123/p/8027191.html
+
+-----------------------------------------------------------
